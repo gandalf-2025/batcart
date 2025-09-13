@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vocalization Comparison</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .section {
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    /* left panel */
+    .section:nth-child(1) {
+      background: #f8e9d2;
+    }
+    /* right panel */
+    .section:nth-child(2) {
+      /* Make the section a flex container */
+      display: flex;
+      justify-content: center; /* Center horizontally */
+      align-items: center;     /* Center vertically */
+      background: #e0eaf5;
+    }
+    .content-wrapper{
+    display: flex;
+    flex-direction: column; /* Stacks the content vertically */
+    align-items: center;    /* Centers items horizontally within the wrapper */
+    gap: 2px;              /* Adds space between the text and the image */
+    }
+    .title {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    .context {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .context button {
+      display: inline-flex;
+      align-items: center;
+      margin: 8px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background: #fff;
+      transition: background 0.2s;
+    }
+    .context button:hover {
+      background: #f0f0f0;
+    }
+    .context button span {
+      margin-left: 6px; /* space for icon */
+      font-size:18px;
+    }
+    .spectrogram {
+      width: 100%;
+      height: 360px;
+      border: 1px solid #aaa;
+      background-size: cover;
+      background-position: center;
+    }
+    .spectrogram img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Or 'cover' */
+    }
+
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Bat Vocalization Panel -->
+    <div class="section">
+      <div class="title">Bat Vocalization</div>
+      <div class="context">
+        <button id="feedingButton">
+          Feeding <span>🔊</span>
+        </button>
+      </div>
+      <div class="spectrogram" id="feedingSpectrogram"></div>
+       <div class="context">
+        <button id="fightingButton">
+          Fighting <span>🔊</span>
+        </button>
+      </div>
+      <div class="spectrogram" id="fightingSpectrogram"></div>
+    </div>
+    
+    <!-- Human Vocalization Panel -->
+    <div class="section">
+      <div class="content-wrapper">
+        <div class="title">Human Vocalization</div>
+      
+        <div class="spectrogram" id="humanSpectrogram"></div>
+      </dividion>
+    </div>
+  </div>
+
+  <script>
+    // BAT AUDIO + SPECTROGRAM
+    document.getElementById('feedingButton').addEventListener('click', () => {
+      playAudio('http://localhost:5000/static/10006-0-feeding.wav'); 
+      
+    });
+    document.getElementById('fightingButton').addEventListener('click', () => {
+      playAudio('http://localhost:5000/static/10449.wav');
+      
+    });
+
+    function playAudio(src) {
+      if (!src) return;
+      const a = new Audio(src);
+      a.play();
+    }
+    
+   // Create a new Image element
+    const humanImg = document.createElement("img");
+
+  // Set the source of the image (replace 'path/to/your/image.png' with the actual path)
+    humanImg.src = "hello_world.png"; 
+
+
+  // Get the container element where you want to display the image
+    const humanImgContainer = document.getElementById("humanSpectrogram");
+
+  // Append the image to the container
+    humanImgContainer.appendChild(humanImg);
+    
+    // Create a new Image element
+    const feedingImg = document.createElement("img");
+
+  // Set the source of the image (replace 'path/to/your/image.png' with the actual path)
+    feedingImg.src = "hello_world.png"; 
+
+
+  // Get the container element where you want to display the image
+    const feedingImgContainer = document.getElementById("feedingSpectrogram");
+
+  // Append the image to the container
+    feedingImgContainer.appendChild(feedingImg);
+    
+    // Create a new Image element
+    const fightingImg = document.createElement("img");
+
+  // Set the source of the image (replace 'path/to/your/image.png' with the actual path)
+    fightingImg.src = "hello_world.png"; 
+
+
+  // Get the container element where you want to display the image
+    const fightingImgContainer = document.getElementById("fightingSpectrogram");
+
+  // Append the image to the container
+    fightingImgContainer.appendChild(fightingImg);
+    
+
+    
+  </script>
+</body>
+</html>
+
